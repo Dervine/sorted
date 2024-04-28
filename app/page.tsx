@@ -161,7 +161,7 @@ export default function Home() {
         </div>
       </header>
       <main>
-        <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div>
             <div className="relative mt-2 rounded-md shadow-sm">
               <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
@@ -173,9 +173,53 @@ export default function Home() {
                 type="text"
                 name="price"
                 id="price"
-                className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 placeholder="Search for service or supplier..."
               />
+            </div>
+          </div>
+          <div className="px-0 py-6">
+            <h1 className="text-l font-medium tracking-tight text-gray-900">Category</h1>
+          </div>
+          <div className="flex space-x-8">
+            <div className="max-w-sm my-8 rounded overflow-hidden shadow-lg bg-white">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
+                  <p className="text-gray-700 text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                  </p>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+                <button className="bg-emerald-100 hover:bg-emerald-400 text-emerald-500 hover:text-white font-normal py-2 px-4 w-full rounded">
+                  Button
+                </button>
+              </div>
+            </div>
+            <div className="max-w-sm my-8 rounded overflow-hidden shadow-lg bg-white">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
+                  <p className="text-gray-700 text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                  </p>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+                <button className="bg-emerald-100 hover:bg-emerald-400 text-emerald-500 hover:text-white font-normal py-2 px-4 w-full rounded">
+                  Button
+                </button>
+              </div>
+            </div>
+            <div className="max-w-sm my-8 rounded overflow-hidden shadow-lg bg-white">
+              <div className="px-6 py-4">
+                <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
+                  <p className="text-gray-700 text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
+                  </p>
+              </div>
+              <div className="px-6 pt-4 pb-2">
+                <button className="bg-emerald-100 hover:bg-emerald-400 text-emerald-500 hover:text-white font-normal py-2 px-4 w-full rounded">
+                  Button
+                </button>
+              </div>
             </div>
           </div>
         </div>

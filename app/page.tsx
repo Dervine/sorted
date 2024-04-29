@@ -163,63 +163,99 @@ export default function Home() {
       <main>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div>
-            <div className="relative mt-2 rounded-md shadow-sm">
-              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+            <div className="p-4 relative mt-2 rounded-md">
+              <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">
                 <span className="text-gray-500 sm:text-sm">
-                <MagnifyingGlassIcon className="h-3 w-3" aria-hidden="true" />
+                <MagnifyingGlassIcon className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
               </div>
               <input
                 type="text"
                 name="price"
                 id="price"
-                className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-400 sm:text-sm sm:leading-6"
                 placeholder="Search for service or supplier..."
               />
             </div>
           </div>
-          <div className="px-0 py-6">
-            <h1 className="text-l font-medium tracking-tight text-gray-900">Category</h1>
-          </div>
-          <div className="flex space-x-8">
-            <div className="max-w-sm my-8 rounded overflow-hidden shadow-lg bg-white">
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p className="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-              </div>
-              <div className="px-6 pt-4 pb-2">
-                <button className="bg-emerald-100 hover:bg-emerald-400 text-emerald-500 hover:text-white font-normal py-2 px-4 w-full rounded">
-                  Button
-                </button>
-              </div>
+          {/* <div className="pt-6">
+            <h1 className="text-l font-medium tracking-tight text-gray-500">Category</h1>
+          </div> */}
+          <div className="flex flex-wrap justify-between mt-10">
+            <div className="p-4 max-w-sm">
+                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
+                    <div className="flex items-center mb-3">
+                        <div
+                            className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
+                        <h2 className="text-white dark:text-white text-lg font-medium">Feature 1</h2>
+                    </div>
+                    <div className="flex flex-col justify-between flex-grow">
+                        <p className="leading-relaxed text-base text-white dark:text-gray-300">
+                            Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.
+                        </p>
+                        <a href="#" className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center">Learn More
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div className="max-w-sm my-8 rounded overflow-hidden shadow-lg bg-white">
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p className="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-              </div>
-              <div className="px-6 pt-4 pb-2">
-                <button className="bg-emerald-100 hover:bg-emerald-400 text-emerald-500 hover:text-white font-normal py-2 px-4 w-full rounded">
-                  Button
-                </button>
-              </div>
+            <div className="p-4 max-w-sm">
+                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
+                    <div className="flex items-center mb-3">
+                        <div
+                            className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
+                        <h2 className="text-white dark:text-white text-lg font-medium">Feature 2</h2>
+                    </div>
+                    <div className="flex flex-col justify-between flex-grow">
+                        <p className="leading-relaxed text-base text-white dark:text-gray-300">
+                            Lorem ipsum dolor sit amet. In quos laboriosam non neque eveniet 33 nihil molestias. Rem perspiciatis iure ut laborum inventore et maxime amet.
+                        </p>
+                        <a href="#" className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center">Learn More
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div className="max-w-sm my-8 rounded overflow-hidden shadow-lg bg-white">
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">The Coldest Sunset</div>
-                  <p className="text-gray-700 text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-                  </p>
-              </div>
-              <div className="px-6 pt-4 pb-2">
-                <button className="bg-emerald-100 hover:bg-emerald-400 text-emerald-500 hover:text-white font-normal py-2 px-4 w-full rounded">
-                  Button
-                </button>
-              </div>
+            <div className="p-4 max-w-sm">
+                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
+                    <div className="flex items-center mb-3">
+                        <div
+                            className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
+                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                            </svg>
+                        </div>
+                        <h2 className="text-white dark:text-white text-lg font-medium">Feature 3</h2>
+                    </div>
+                    <div className="flex flex-col justify-between flex-grow">
+                        <p className="leading-relaxed text-base text-white dark:text-gray-300">
+                            Lorem ipsum dolor sit amet. In quos laboriosam non neque eveniet 33 nihil molestias. Rem perspiciatis iure ut laborum inventore et maxime amet.
+                        </p>
+                        <a href="#" className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center">Learn More
+                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
+                                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
             </div>
           </div>
         </div>

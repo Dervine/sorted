@@ -1,5 +1,5 @@
 'use client';
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline' 
 
@@ -21,12 +21,19 @@ const userNavigation = [
   { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '#' },
 ]
-
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
 export default function Home() {
+  const [vendors, setVendors] = useState([]);
+
+  useEffect(() => {
+    fetch('/api/vendors')
+      .then((response) => response.json())
+      .then((data) => setVendors(data));
+  }, []);
+
   return (
     <>
     <div className="min-h-full">
@@ -181,27 +188,28 @@ export default function Home() {
           <div className="pl-4 mt-2 flex items-center text-sm text-gray-500">
             Home Supplies & Home Care Services
           </div>
-          <div className="flex flex-wrap justify-between mt-0">
-            <div className="p-4 w-96">
+          <div className="flex flex-wrap">
+            {vendors.map((vendor) => (
+              <div key={vendor._id} className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4">
                 <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
                     <div className="divide-y divide-gray-200">
                       <div className="flex items-center mb-2">
-                          <h2 className="text-gray-700 dark:text-white text-sm font-medium">Jet Fresh Detergents</h2>
+                          <h2 className="text-gray-700 dark:text-white text-sm font-medium">{vendor.name}</h2>
                       </div>
                       <div className="mb-4"></div>
                     </div>
                     <div className="flex flex-col justify-between flex-grow">
                       <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
                         <div>Supplier Contact</div>
-                        <div>0702824724</div>
+                        <div>{vendor.phone}</div>
                       </div>
                       <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
                         <div>Product/Service</div>
-                        <div>All Detergents - Multipurpose Soap, Bleach-Jik, fabric softener, handwash, toilet cleaner</div>
+                        <div>{vendor.product}</div>
                       </div>
                       <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
                         <div>Delivery</div>
-                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Free</span>
+                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">{vendor.delivery}</span>
                       </div>
                       <div className="flex ml-auto items-center my-4">
                           <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -216,77 +224,8 @@ export default function Home() {
                       </button>
                     </div>
                 </div>
-            </div>
-            <div className="p-4 w-96">
-                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
-                    <div className="divide-y divide-gray-200">
-                      <div className="flex items-center mb-2">
-                          <h2 className="text-gray-700 dark:text-white text-sm font-medium">Belle Gas</h2>
-                      </div>
-                      <div className="mb-4"></div>
-                    </div>
-                    <div className="flex flex-col justify-between flex grow">
-                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
-                        <div>Supplier Contact</div>
-                        <div>0702824724</div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
-                        <div>Product/Service</div>
-                        <div>Cooking Gas</div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
-                        <div>Delivery</div>
-                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Free</span>
-                      </div>
-                      <div className="flex ml-auto items-center my-4">
-                          <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                          </svg>
-                          <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
-                          <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                          <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">3 reviews</a>
-                      </div>
-                      <button className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded">
-                        Order from Supplier
-                      </button>
-                    </div>
-                </div>
-            </div>
-            <div className="p-4 w-96">
-                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
-                    <div className="divide-y divide-gray-200">
-                      <div className="flex items-center mb-2">
-                          <h2 className="text-gray-700 dark:text-white text-sm font-medium">Ronny Lufuyo</h2>
-                      </div>
-                      <div className="mb-4"></div>
-                    </div>
-                    <div className="flex flex-col justify-between flex-grow">
-                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
-                        <div>Supplier Contact</div>
-                        <div>0714789986/0733149380</div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
-                        <div>Product/Service</div>
-                        <div>Pest control, Fumigation</div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
-                        <div>Delivery</div>
-                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Free</span>
-                      </div>
-                      <div className="flex ml-auto items-center my-4">
-                          <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                          </svg>
-                          <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">2</p>
-                          <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                          <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">1 reviews</a>
-                      </div>
-                      <button className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded">
-                        Order from Supplier
-                      </button>
-                    </div>
-                </div>
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </main>

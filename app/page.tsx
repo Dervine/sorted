@@ -156,7 +156,7 @@ export default function Home() {
       </Disclosure>
 
       <header>
-        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <div className="p-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <h1 className="text-l font-medium tracking-tight text-gray-900">Dervine</h1>
         </div>
       </header>
@@ -178,82 +178,112 @@ export default function Home() {
               />
             </div>
           </div>
-          {/* <div className="pt-6">
-            <h1 className="text-l font-medium tracking-tight text-gray-500">Category</h1>
-          </div> */}
-          <div className="flex flex-wrap justify-between mt-10">
-            <div className="p-4 max-w-sm">
-                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
-                    <div className="flex items-center mb-3">
-                        <div
-                            className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                            </svg>
-                        </div>
-                        <h2 className="text-white dark:text-white text-lg font-medium">Feature 1</h2>
+          <div className="pl-4 mt-2 flex items-center text-sm text-gray-500">
+            Home Supplies & Home Care Services
+          </div>
+          <div className="flex flex-wrap justify-between mt-0">
+            <div className="p-4 w-96">
+                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
+                    <div className="divide-y divide-gray-200">
+                      <div className="flex items-center mb-2">
+                          <h2 className="text-gray-700 dark:text-white text-sm font-medium">Jet Fresh Detergents</h2>
+                      </div>
+                      <div className="mb-4"></div>
                     </div>
                     <div className="flex flex-col justify-between flex-grow">
-                        <p className="leading-relaxed text-base text-white dark:text-gray-300">
-                            Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.
-                        </p>
-                        <a href="#" className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Supplier Contact</div>
+                        <div>0702824724</div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Product/Service</div>
+                        <div>All Detergents - Multipurpose Soap, Bleach-Jik, fabric softener, handwash, toilet cleaner</div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Delivery</div>
+                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Free</span>
+                      </div>
+                      <div className="flex ml-auto items-center my-4">
+                          <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
+                          <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+                          <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">3 reviews</a>
+                      </div>
+                      <button className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded">
+                        Order from Supplier
+                      </button>
                     </div>
                 </div>
             </div>
-            <div className="p-4 max-w-sm">
-                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
-                    <div className="flex items-center mb-3">
-                        <div
-                            className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                            </svg>
-                        </div>
-                        <h2 className="text-white dark:text-white text-lg font-medium">Feature 2</h2>
+            <div className="p-4 w-96">
+                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
+                    <div className="divide-y divide-gray-200">
+                      <div className="flex items-center mb-2">
+                          <h2 className="text-gray-700 dark:text-white text-sm font-medium">Belle Gas</h2>
+                      </div>
+                      <div className="mb-4"></div>
                     </div>
-                    <div className="flex flex-col justify-between flex-grow">
-                        <p className="leading-relaxed text-base text-white dark:text-gray-300">
-                            Lorem ipsum dolor sit amet. In quos laboriosam non neque eveniet 33 nihil molestias. Rem perspiciatis iure ut laborum inventore et maxime amet.
-                        </p>
-                        <a href="#" className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                    <div className="flex flex-col justify-between flex grow">
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Supplier Contact</div>
+                        <div>0702824724</div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Product/Service</div>
+                        <div>Cooking Gas</div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Delivery</div>
+                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Free</span>
+                      </div>
+                      <div className="flex ml-auto items-center my-4">
+                          <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
+                          <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+                          <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">3 reviews</a>
+                      </div>
+                      <button className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded">
+                        Order from Supplier
+                      </button>
                     </div>
                 </div>
             </div>
-            <div className="p-4 max-w-sm">
-                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 p-8 flex-col">
-                    <div className="flex items-center mb-3">
-                        <div
-                            className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full dark:bg-indigo-500 bg-indigo-500 text-white flex-shrink-0">
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" className="w-5 h-5" viewBox="0 0 24 24">
-                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                            </svg>
-                        </div>
-                        <h2 className="text-white dark:text-white text-lg font-medium">Feature 3</h2>
+            <div className="p-4 w-96">
+                <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
+                    <div className="divide-y divide-gray-200">
+                      <div className="flex items-center mb-2">
+                          <h2 className="text-gray-700 dark:text-white text-sm font-medium">Ronny Lufuyo</h2>
+                      </div>
+                      <div className="mb-4"></div>
                     </div>
                     <div className="flex flex-col justify-between flex-grow">
-                        <p className="leading-relaxed text-base text-white dark:text-gray-300">
-                            Lorem ipsum dolor sit amet. In quos laboriosam non neque eveniet 33 nihil molestias. Rem perspiciatis iure ut laborum inventore et maxime amet.
-                        </p>
-                        <a href="#" className="mt-3 text-black dark:text-white hover:text-blue-600 inline-flex items-center">Learn More
-                            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" className="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                <path d="M5 12h14M12 5l7 7-7 7"></path>
-                            </svg>
-                        </a>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Supplier Contact</div>
+                        <div>0714789986/0733149380</div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Product/Service</div>
+                        <div>Pest control, Fumigation</div>
+                      </div>
+                      <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                        <div>Delivery</div>
+                        <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">Free</span>
+                      </div>
+                      <div className="flex ml-auto items-center my-4">
+                          <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                              <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                          </svg>
+                          <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">2</p>
+                          <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+                          <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">1 reviews</a>
+                      </div>
+                      <button className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded">
+                        Order from Supplier
+                      </button>
                     </div>
                 </div>
             </div>

@@ -20,9 +20,9 @@ function classNames(...classes: string[]) {
 
 interface Vendor {
   _id: string;
-  location: string;
   name: string;
   phone: string;
+  delivery: string;
 }
 
 interface Product {
@@ -42,6 +42,7 @@ interface VendorsByCategory {
 
 export default function Home() {
   const [vendorsByCategory, setVendorsByCategory] = useState<VendorsByCategory>({});
+  const [showAll, setShowAll] = useState(false);
 
   useEffect(() => {
     fetch('/api/vendors')
@@ -177,18 +178,18 @@ export default function Home() {
           </div>
 
           <div>
-            {Object.entries(vendorsByCategory).map(([category, vendors]) => (
-              <div key={category}>
+            {Object.entries(vendorsByCategory).map(([category, vendors], index) => (
+              <div key={category} className="relative">
                 <div className="pl-4 mt-2 flex items-center text-sm text-gray-500">
                   {category}
                 </div>
                 <div className="flex flex-wrap">
-                  {vendors.map((vendor) => (
-                  <div key={vendor.vendor._id} className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4">
-                    <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
+                  {vendors.slice(0, showAll ? vendors.length : 3).map((vendor) => (
+                    <div key={vendor.vendor._id} className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4">
+                      <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
                         <div className="divide-y divide-gray-200">
                           <div className="flex items-center mb-2">
-                              <h2 className="text-gray-700 dark:text-white text-sm font-medium">{vendor.vendor.name}</h2>
+                            <h2 className="text-gray-700 dark:text-white text-sm font-medium">{vendor.vendor.name}</h2>
                           </div>
                           <div className="mb-4"></div>
                         </div>
@@ -199,13 +200,13 @@ export default function Home() {
                           </div>
                           <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
                             <div>Product/Service</div>
-                            <div key={vendor.products._id}>
+                            <div className="bg-indigo-50 p-2 text-gray-700 rounded" key={vendor.products._id}>
                               <p>{vendor.products.name}</p>
                             </div>
                           </div>
                           <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
                             <div>Delivery</div>
-                            <span className="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20">{vendor.delivery}</span>
+                              <p>{vendor.vendor.delivery}</p>
                           </div>
                           <div className="flex ml-auto items-center my-4">
                               <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
@@ -219,10 +220,20 @@ export default function Home() {
                             Order from {vendor.vendor.name}
                           </button>
                         </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
                 </div>
+                {vendors.length > 3 && (
+                  <div className="absolute bottom-0 right-0 -mb-4 mr-4">
+                    <button
+                      className="text-sm text-indigo-500 hover:underline"
+                      onClick={() => setShowAll(!showAll)}
+                    >
+                      {showAll ? "Hide" : "Show All"}
+                    </button>
+                  </div>
+                )}
               </div>
             ))}
           </div>

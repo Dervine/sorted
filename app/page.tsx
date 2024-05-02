@@ -4,10 +4,10 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline' 
 
 const user = {
-  name: 'Tom Cook',
-  email: 'tom@example.com',
+  name: 'LST User',
+  email: 'lstuser@example.com',
   imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    'https://www.bma.co.ke/wp-content/uploads/2016/07/lifestyle_terraces.jpg',
 }
 const userNavigation = [
   { name: 'Your Profile', href: '#' },
@@ -67,7 +67,7 @@ export default function Home() {
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6 lg:-mr-20">
-                    <p className="text-sm font-medium tracking-tight text-gray-900">Apartments</p>
+                    <p className="text-sm font-medium tracking-tight text-gray-900">Lifestyle Terraces</p>
 
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
@@ -161,7 +161,7 @@ export default function Home() {
       </Disclosure>
       <main className="bg-gray-200">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        <h1 className="p-4 mt-2 text-l font-medium tracking-tight text-gray-900">Dervine</h1>
+        <h1 className="p-4 mt-2 text-l font-medium tracking-tight text-gray-900">{user.name}</h1>
           <div className="p-4 relative rounded-md">
             <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">
               <span className="text-gray-500 sm:text-sm">
@@ -172,7 +172,7 @@ export default function Home() {
               type="text"
               name="price"
               id="price"
-              className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-400 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6"
               placeholder="Search for service or supplier..."
             />
           </div>
@@ -194,29 +194,21 @@ export default function Home() {
                           <div className="mb-4"></div>
                         </div>
                         <div className="flex flex-col justify-between flex-grow">
-                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
                             <div>Supplier Contact</div>
                             <div>{vendor.vendor.phone}</div>
                           </div>
-                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
                             <div>Product/Service</div>
-                            <div className="bg-indigo-50 p-2 text-gray-700 rounded" key={vendor.products._id}>
+                            <div className="bg-blue-50 p-2 text-gray-700 rounded" key={vendor.products._id}>
                               <p>{vendor.products.name}</p>
                             </div>
                           </div>
-                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300">
+                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
                             <div>Delivery</div>
                               <p>{vendor.vendor.delivery}</p>
                           </div>
-                          <div className="flex ml-auto items-center my-4">
-                              <svg className="w-4 h-4 text-yellow-300 me-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                  <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                              </svg>
-                              <p className="ms-2 text-sm font-bold text-gray-900 dark:text-white">4.95</p>
-                              <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
-                              <a href="#" className="text-sm font-medium text-gray-900 underline hover:no-underline dark:text-white">3 reviews</a>
-                          </div>
-                          <button className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded">
+                          <button className="text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mt-7 rounded">
                             Order from {vendor.vendor.name}
                           </button>
                         </div>
@@ -227,7 +219,7 @@ export default function Home() {
                 {vendors.length > 3 && (
                   <div className="absolute bottom-0 right-0 -mb-4 mr-4">
                     <button
-                      className="text-sm text-indigo-500 hover:underline"
+                      className="text-sm text-blue-500 hover:underline"
                       onClick={() => setShowAll(!showAll)}
                     >
                       {showAll ? "Hide" : "Show All"}

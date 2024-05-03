@@ -2,6 +2,7 @@
 import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline' 
+import React from 'react';
 
 const user = {
   name: 'LST User',
@@ -10,8 +11,6 @@ const user = {
     'https://www.bma.co.ke/wp-content/uploads/2016/07/lifestyle_terraces.jpg',
 }
 const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '#' },
 ]
 function classNames(...classes: string[]) {
@@ -43,6 +42,11 @@ interface VendorsByCategory {
 export default function Home() {
   const [vendorsByCategory, setVendorsByCategory] = useState<VendorsByCategory>({});
   const [showAll, setShowAll] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchInputChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
   useEffect(() => {
     fetch('/api/vendors')
@@ -67,7 +71,7 @@ export default function Home() {
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6 lg:-mr-20">
-                    <p className="text-sm font-medium tracking-tight text-gray-900">Lifestyle Terraces</p>
+                    <p className="text-sm font-medium tracking-tight text-gray-900">Apartments</p>
 
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
@@ -170,10 +174,12 @@ export default function Home() {
             </div>
             <input
               type="text"
-              name="price"
-              id="price"
-              className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6"
-              placeholder="Search for service or supplier..."
+              name="search"
+              id="search"
+              value={searchQuery}
+              onChange={handleSearchInputChange}
+              className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-blue-400 sm:text-sm sm:leading-6"
+              placeholder="Search for product/service or supplier..."
             />
           </div>
 
@@ -184,39 +190,45 @@ export default function Home() {
                   {category}
                 </div>
                 <div className="flex flex-wrap">
-                  {vendors.slice(0, showAll ? vendors.length : 3).map((vendor) => (
-                    <div key={vendor.vendor._id} className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4">
-                      <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
-                        <div className="divide-y divide-gray-200">
-                          <div className="flex items-center mb-2">
-                            <h2 className="text-gray-700 dark:text-white text-sm font-medium">{vendor.vendor.name}</h2>
-                          </div>
-                          <div className="mb-4"></div>
-                        </div>
-                        <div className="flex flex-col justify-between flex-grow">
-                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
-                            <div>Supplier Contact</div>
-                            <div>{vendor.vendor.phone}</div>
-                          </div>
-                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
-                            <div>Product/Service</div>
-                            <div className="bg-blue-50 p-2 text-gray-700 rounded" key={vendor.products._id}>
-                              <p>{vendor.products.name}</p>
+                  {vendors
+                    .filter((vendor) =>
+                      vendor.vendor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                      vendor.products.name.toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                    .slice(0, showAll || searchQuery ? vendors.length : 3)
+                    .map((vendor) => (
+                      <div key={vendor.vendor._id} className="w-full sm:w-1/2 md:w-1/2 lg:w-1/3 p-4">
+                        <div className="flex rounded-lg h-full dark:bg-gray-800 bg-white p-5 flex-col">
+                          <div className="divide-y divide-gray-200">
+                            <div className="flex items-center mb-2">
+                              <h2 className="text-gray-700 dark:text-white text-sm font-medium">{vendor.vendor.name}</h2>
                             </div>
+                            <div className="mb-4"></div>
                           </div>
-                          <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
-                            <div>Delivery</div>
-                              <p>{vendor.vendor.delivery}</p>
+                          <div className="flex flex-col justify-between flex-grow">
+                            <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
+                              <div>Supplier Contact</div>
+                              <div>{vendor.vendor.phone}</div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
+                              <div>Product/Service</div>
+                              <div className="bg-blue-50 p-2 text-gray-700 rounded" key={vendor.products._id}>
+                                <p>{vendor.products.name}</p>
+                              </div>
+                            </div>
+                            <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
+                              <div>Delivery</div>
+                                <p>{vendor.vendor.delivery}</p>
+                            </div>
+                            <button className="text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mt-7 rounded">
+                              Order from {vendor.vendor.name}
+                            </button>
                           </div>
-                          <button className="text-sm bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 mt-7 rounded">
-                            Order from {vendor.vendor.name}
-                          </button>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
                 </div>
-                {vendors.length > 3 && (
+                {(vendors.length > 3 && !searchQuery) && (
                   <div className="absolute bottom-0 right-0 -mb-4 mr-4">
                     <button
                       className="text-sm text-blue-500 hover:underline"

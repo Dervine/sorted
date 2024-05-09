@@ -1,11 +1,11 @@
 'use client';
 import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline' 
+import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline' 
 import React from 'react';
 
 const user = {
-  name: 'Dervine',
+  name: 'LST User',
   email: 'lstuser@example.com',
   imageUrl:
     'https://www.bma.co.ke/wp-content/uploads/2016/07/lifestyle_terraces.jpg',
@@ -50,6 +50,16 @@ export default function Home() {
   const [sending, setSending] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
+
+  const hideError = () => {
+    setShowErrorDialog(false);
+  };
+
+  const hideSuccess = () => {
+    setShowSuccessDialog(false);
+  };
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -77,11 +87,15 @@ export default function Home() {
       // Check if the request was successful
       if (response.ok) {
         setSuccess(true);
+        setShowSuccessDialog(true);
+        setShowDialog(false);
+        setMessage('');
         setError('');
       } else {
         // If there was an error, parse the response and set the error state
         const data = await response.json();
         setSuccess(false);
+        setShowErrorDialog(true);
         setError(data.message || 'Failed to send SMS');
       }
     } catch (error) {
@@ -115,7 +129,7 @@ export default function Home() {
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-4 flex items-center md:ml-6 lg:-mr-20">
-                    <p className="text-sm font-medium tracking-tight text-gray-900">My Apartments</p>
+                    <p className="text-sm font-medium tracking-tight text-gray-900">Lifestyle Terraces</p>
 
                     {/* Profile dropdown */}
                     <Menu as="div" className="relative ml-3">
@@ -296,10 +310,8 @@ export default function Home() {
       </main>
       {showDialog && selectedVendor && (
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-8 max-w-3xl w-full">
+          <div className="bg-white rounded-lg p-8 max-w-xl w-full">
             <h2 className="text-lg font-semibold mb-4">Contact {selectedVendor.name}</h2>
-            {success && <div className="text-green-600 mb-4">SMS sent successfully!</div>}
-            {error && <div className="text-red-600 mb-4">{error}</div>}
             <textarea
               className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               rows={6}
@@ -320,6 +332,48 @@ export default function Home() {
                 disabled={sending} 
               >
                 {sending ? 'Sending...' : 'Send'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showSuccessDialog && (
+        <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+          <div className="sm:flex sm:items-start bg-white rounded-lg p-8 max-w-lg w-full items-center">
+            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-green-100 sm:mx-0 sm:h-10 sm:w-10">
+              <CheckCircleIcon className="h-6 w-6 text-green-600" aria-hidden="true" />
+            </div>
+            <div className="text-center sm:ml-4 sm:mt-0 sm:text-left">
+              <h2 className="text-lg font-semibold mb-4">Success</h2>
+              <p>Your message has been sent successfully.</p>
+            </div>
+            <div className="flex justify-end mt-4 space-x-4">
+              <button 
+                className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white lg:mt-20 py-2 px-4 rounded"
+                onClick={hideSuccess}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      {showErrorDialog && (
+        <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+          <div className="sm:flex sm:items-start bg-white rounded-lg p-8 max-w-lg w-full items-center">
+            <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0 sm:h-10 sm:w-10">
+              <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+            </div>
+            <div className="text-center sm:ml-4 sm:mt-0 sm:text-left">
+              <h2 className="text-lg font-semibold mb-4">Failed</h2>
+              <p>Failed to send SMS.</p>
+            </div>
+            <div className="flex justify-end mt-4 space-x-4">
+              <button 
+                className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white lg:mt-20 py-2 px-4 rounded"
+                onClick={hideError}
+              >
+                OK
               </button>
             </div>
           </div>

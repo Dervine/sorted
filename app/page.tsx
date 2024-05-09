@@ -44,7 +44,12 @@ export default function Home() {
   const [showAll, setShowAll] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showDialog, setShowDialog] = useState(false);
-  const [selectedVendor, setSelectedVendor] = useState<Vendor | null>(null);; 
+  const [selectedVendor, setSelectedVendor] = useState<Vendor | null>(null);
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [message, setMessage] = useState('');
+  const [sending, setSending] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -52,7 +57,39 @@ export default function Home() {
 
   const handleContactButtonClick = (vendor: Vendor) => {
     setSelectedVendor(vendor);
+    setPhoneNumber(vendor.phone);
     setShowDialog(true);
+  };
+  
+  const handleSendSMS = async () => {
+    try {
+      setSending(true);
+
+      // Make the HTTP POST request to send the SMS
+      const response = await fetch('/api/sendSMS', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ phoneNumber, message }),
+      });
+
+      // Check if the request was successful
+      if (response.ok) {
+        setSuccess(true);
+        setError('');
+      } else {
+        // If there was an error, parse the response and set the error state
+        const data = await response.json();
+        setSuccess(false);
+        setError(data.message || 'Failed to send SMS');
+      }
+    } catch (error) {
+      setSuccess(false);
+      setError(error.message || 'Failed to send SMS');
+    } finally {
+      setSending(false);
+    }
   };
 
   useEffect(() => {
@@ -197,7 +234,8 @@ export default function Home() {
                   {category}
                 </div>
                 <div className="flex flex-wrap">
-                  {vendors
+                  {Array.isArray(vendors) && vendors.length > 0 ? (
+                  vendors
                     .filter((vendor) =>
                       vendor.vendor.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                       vendor.products.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -236,9 +274,12 @@ export default function Home() {
                           </div>
                         </div>
                       </div>
-                    ))}
+                    ))
+                    ) : (
+                      <p className="text-sm text-gray-500 p-4">No vendors found</p>
+                  )}
                 </div>
-                {(vendors.length > 3 && !searchQuery) && (
+                {(Array.isArray(vendors) && vendors.length > 3 && !searchQuery) && (
                   <div className="absolute bottom-0 right-0 -mb-4 mr-4">
                     <button
                       className="text-sm text-indigo-500 hover:underline"
@@ -257,10 +298,14 @@ export default function Home() {
         <div className="absolute top-0 left-0 right-0 bottom-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white rounded-lg p-8 max-w-3xl w-full">
             <h2 className="text-lg font-semibold mb-4">Contact {selectedVendor.name}</h2>
+            {success && <div className="text-green-600 mb-4">SMS sent successfully!</div>}
+            {error && <div className="text-red-600 mb-4">{error}</div>}
             <textarea
               className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
               rows={6}
               placeholder="Enter your message here..."
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
             ></textarea>
             <div className="flex justify-end mt-4 space-x-4">
               <button 
@@ -271,14 +316,10 @@ export default function Home() {
               </button>
               <button 
                 className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded"
-                onClick={() => {
-                  // Implement send functionality here
-                  // You can add your logic to send the message
-                  // Once sent, you can close the dialog
-                  setShowDialog(false);
-                }} 
+                onClick={handleSendSMS}
+                disabled={sending} 
               >
-                Send
+                {sending ? 'Sending...' : 'Send'}
               </button>
             </div>
           </div>

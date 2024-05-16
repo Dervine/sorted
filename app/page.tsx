@@ -3,6 +3,7 @@ import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline' 
 import React from 'react';
+import SignIn from '../components/auth/signin';
 
 const user = {
   name: 'LST User',
@@ -114,7 +115,10 @@ export default function Home() {
 
   return (
     <>
-    <div className="min-h-full bg-white">
+    <div className="flex justify-center items-center">
+        <SignIn />
+    </div>
+    <div className="min-h-full bg-white hidden">
       <Disclosure as="nav">
         {({ open }) => (
           <>
@@ -223,6 +227,8 @@ export default function Home() {
       </Disclosure>
       <main className="bg-gray-200">
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div></div>
+          {/* rest of page */}
         <h1 className="p-4 mt-2 text-l font-medium tracking-tight text-gray-900">{user.name}</h1>
           <div className="p-4 relative rounded-md">
             <div className="pointer-events-none absolute inset-y-0 flex items-center pl-3">

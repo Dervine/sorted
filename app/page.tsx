@@ -4,6 +4,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline' 
 import { signIn } from 'next-auth/react';
 import { HiOutlineRefresh } from 'react-icons/hi';
+import { useSession } from 'next-auth/react';
 
 const user = {
   name: 'LST User',
@@ -88,14 +89,14 @@ export default function Home() {
       redirect: false,
     });
 
-    if (!result.error) {
+    if (result && !result.error) {
       // Successful sign-in, do something
       setSignInSuccess(true); 
       console.log('Signed in successfully');
     } else {
       // Failed sign-in, handle error
-      console.error('Sign-in failed:', result.error);
-      setError(result.error);
+      console.error('Sign-in failed:', result?.error);
+      setError(result?.error ?? 'An error occurred during sign-in');
     }
 
     setLoading(false); // Reset loading state

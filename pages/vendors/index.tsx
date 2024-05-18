@@ -2,6 +2,7 @@
 import React, { Fragment, useState, useEffect, ChangeEvent } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, MagnifyingGlassIcon, CheckCircleIcon, ExclamationTriangleIcon } from '@heroicons/react/24/outline' 
+import "../../app/globals.css";
 
 const user = {
   name: 'LST User',

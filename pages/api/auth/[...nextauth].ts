@@ -1,19 +1,17 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
-import { MongoClient } from 'mongodb';
+import clientPromise from "../../../lib/mongodb";
 
 export default NextAuth({
   providers: [
     Credentials({
+      /* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/
+      // @ts-ignore
       async authorize(credentials: { email: string; password: string; }) {
-        const client = new MongoClient(process.env.MONGODB_URI, {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-        });
 
         try {
-          await client.connect();
-          const db = client.db('soko');
+          const client = await clientPromise;
+          const db = client.db("soko");
           const usersCollection = db.collection('users');
           const user = await usersCollection.findOne({ email: credentials.email });
 
@@ -25,11 +23,8 @@ export default NextAuth({
         } catch (error) {
           console.error('Error during authentication:', error);
           return Promise.resolve(null);
-        } finally {
-          await client.close();
         }
       },
     }),
   ],
-  database: process.env.MONGODB_URI,
 });

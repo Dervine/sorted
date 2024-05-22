@@ -5,7 +5,6 @@ import clientPromise from "../../../lib/mongodb";
 export default NextAuth({
   providers: [
     Credentials({
-      /* eslint-disable-next-line @typescript-eslint/ban-ts-comment*/
       // @ts-ignore
       async authorize(credentials: { email: string; password: string; }) {
 

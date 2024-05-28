@@ -16,7 +16,7 @@ export default NextAuth({
           const user = await usersCollection.findOne({ email: credentials.email });
 
           if (user && await bcrypt.compare(credentials.password, user.password)) {
-            return { id: user._id, email: user.email, name: user.name };
+            return { id: user._id.toString(), email: user.email, name: user.name };
           } else {
             return null;
           }
@@ -40,8 +40,9 @@ export default NextAuth({
     async session({ session, token }) {
       if (token) {
         session.user = {
-          email: token.email as string,
-          name: token.name as string,
+          ...session.user,
+          email: token.email,
+          name: token.name,
         };
       }
       return session;

@@ -238,7 +238,7 @@ export default function Home() {
               id="search"
               value={searchQuery}
               onChange={handleSearchInputChange}
-              className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-indigo-400 sm:text-sm sm:leading-6"
+              className="block w-full rounded-md border-0 py-2 pl-7 pr-20 text-gray-900 ring-0 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-1 focus:ring-inset focus:ring-sky-400 sm:text-sm sm:leading-6"
               placeholder="Search for product/service or supplier..."
             />
           </div>
@@ -273,7 +273,7 @@ export default function Home() {
                             </div>
                             <div className="grid grid-cols-2 gap-1 text-sm text-gray-500 dark:text-gray-300 leading-7">
                               <div>Product/Service</div>
-                              <div className="bg-indigo-50 p-2 text-gray-700 rounded" key={vendor.products._id}>
+                              <div className="bg-sky-50 p-2 text-gray-700 rounded" key={vendor.products._id}>
                                 <p>{vendor.products.name}</p>
                               </div>
                             </div>
@@ -282,7 +282,7 @@ export default function Home() {
                                 <p>{vendor.vendor.delivery}</p>
                             </div>
                             <button
-                              className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 mt-7 rounded"
+                              className="text-sm bg-sky-500 hover:bg-sky-700 text-white py-2 px-4 mt-7 rounded"
                               onClick={() => handleContactButtonClick(vendor.vendor)}
                             >
                               Contact {vendor.vendor.name}
@@ -298,7 +298,7 @@ export default function Home() {
                 {(Array.isArray(vendors) && vendors.length > 3 && !searchQuery) && (
                   <div className="absolute bottom-0 right-0 -mb-4 mr-4">
                     <button
-                      className="text-sm text-indigo-500 hover:underline"
+                      className="text-sm text-sky-500 hover:underline"
                       onClick={() => setShowAll(!showAll)}
                     >
                       {showAll ? "Hide" : "Show All"}
@@ -315,7 +315,7 @@ export default function Home() {
           <div className="bg-white rounded-lg p-8 max-w-xl w-full">
             <h2 className="text-lg font-semibold mb-4">Contact {selectedVendor.name}</h2>
             <textarea
-              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+              className="block w-full border-gray-300 rounded-md shadow-sm focus:border-sky-300 focus:ring focus:ring-sky-200 focus:ring-opacity-50"
               rows={6}
               placeholder="Enter your message here..."
               value={message}
@@ -329,7 +329,7 @@ export default function Home() {
                 Cancel
               </button>
               <button 
-                className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white py-2 px-4 rounded"
+                className="text-sm bg-sky-500 hover:bg-sky-700 text-white py-2 px-4 rounded"
                 onClick={handleSendSMS}
                 disabled={sending} 
               >
@@ -351,7 +351,7 @@ export default function Home() {
             </div>
             <div className="flex justify-end mt-4 space-x-4">
               <button 
-                className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white lg:mt-20 py-2 px-4 rounded"
+                className="text-sm bg-sky-500 hover:bg-sky-700 text-white lg:mt-20 py-2 px-4 rounded"
                 onClick={hideSuccess}
               >
                 OK
@@ -372,7 +372,7 @@ export default function Home() {
             </div>
             <div className="flex justify-end mt-4 space-x-4">
               <button 
-                className="text-sm bg-indigo-500 hover:bg-indigo-700 text-white lg:mt-20 py-2 px-4 rounded"
+                className="text-sm bg-sky-500 hover:bg-sky-700 text-white lg:mt-20 py-2 px-4 rounded"
                 onClick={hideError}
               >
                 OK

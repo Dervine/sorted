@@ -74,7 +74,7 @@ export default function Home() {
                       id="apartment"
                       value={selectedApartment}
                       onChange={(e) => setSelectedApartment(e.target.value)}
-                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-sky-500 focus:border-sky-500 focus:z-10 sm:text-sm"
                     >
                       <option value="">Select Apartment</option>
                       {apartments.map((apartment: any) => (
@@ -89,7 +89,7 @@ export default function Home() {
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-sky-500 focus:border-sky-500 focus:z-10 sm:text-sm"
                       placeholder="Email address"
                     />
                   </div>
@@ -100,7 +100,7 @@ export default function Home() {
                       type="password"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                      className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-sky-500 focus:border-sky-500 focus:z-10 sm:text-sm"
                       placeholder="Password"
                     />
                   </div>
@@ -109,7 +109,7 @@ export default function Home() {
                 <div>
                   <button
                     type="submit"
-                    className={`text-sm w-full py-3 mt-4 bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-white font-semibold rounded-lg shadow-md flex items-center justify-center ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                    className={`text-sm w-full py-3 mt-4 bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500 text-white font-semibold rounded-lg shadow-md flex items-center justify-center ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                     disabled={loading} // Disable button when loading
                   >
                     {loading ? (

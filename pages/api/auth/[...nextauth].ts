@@ -1,6 +1,7 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import clientPromise from "../../../lib/mongodb";
+import bcrypt from 'bcrypt';
 
 export default NextAuth({
   providers: [
@@ -14,17 +15,39 @@ export default NextAuth({
           const usersCollection = db.collection('users');
           const user = await usersCollection.findOne({ email: credentials.email });
 
-          if (user && user.password === credentials.password) {
-            return Promise.resolve(user);
+          if (user && await bcrypt.compare(credentials.password, user.password)) {
+            return { id: user._id, email: user.email, name: user.name };
           } else {
-            return Promise.resolve(null);
+            return null;
           }
         } catch (error) {
           console.error('Error during authentication:', error);
-          return Promise.resolve(null);
+          return null;
         }
       },
     }),
   ],
   secret: process.env.SECRET,
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user = {
+          email: token.email as string,
+          name: token.name as string,
+        };
+      }
+      return session;
+    },
+  },
+  pages: {
+    signIn: '/',
+  },
 });
